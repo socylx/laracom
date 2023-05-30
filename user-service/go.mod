@@ -3,6 +3,7 @@ module github.com/socylx/laracom/user-service
 go 1.20
 
 require (
+	github.com/golang-jwt/jwt v0.0.0-20210529014511-0f726ea0e725
 	github.com/golang/protobuf v1.5.3
 	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/micro/v3 v3.18.5
@@ -20,7 +21,6 @@ require (
 	github.com/evanphx/json-patch/v5 v5.5.0 // indirect
 	github.com/go-acme/lego/v3 v3.4.0 // indirect
 	github.com/go-sql-driver/mysql v1.5.0 // indirect
-	github.com/golang-jwt/jwt v0.0.0-20210529014511-0f726ea0e725 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/hashicorp/go-version v1.2.1 // indirect
