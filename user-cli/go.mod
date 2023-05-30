@@ -1,15 +1,10 @@
-module github.com/socylx/laracom/user-service
+module github.com/socylx/laracom/user-cli
 
 go 1.20
 
 require (
-	github.com/golang/protobuf v1.5.3
-	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/micro/v3 v3.18.5
-	github.com/satori/go.uuid v1.2.0
-	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
-	golang.org/x/net v0.8.0
-	google.golang.org/protobuf v1.30.0
+	github.com/socylx/laracom/user-service v0.0.0-20230530064433-e4d4346fbbce
 )
 
 require (
@@ -19,14 +14,13 @@ require (
 	github.com/desertbit/timer v0.0.0-20180107155436-c41aec40b27f // indirect
 	github.com/evanphx/json-patch/v5 v5.5.0 // indirect
 	github.com/go-acme/lego/v3 v3.4.0 // indirect
-	github.com/go-sql-driver/mysql v1.5.0 // indirect
 	github.com/golang-jwt/jwt v0.0.0-20210529014511-0f726ea0e725 // indirect
+	github.com/golang/protobuf v1.5.3 // indirect
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/hashicorp/go-version v1.2.1 // indirect
 	github.com/hpcloud/tail v1.0.0 // indirect
 	github.com/improbable-eng/grpc-web v0.13.0 // indirect
-	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/miekg/dns v1.1.43 // indirect
 	github.com/nightlyone/lockfile v1.0.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
@@ -45,10 +39,12 @@ require (
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
 	go.uber.org/atomic v1.6.0 // indirect
+	golang.org/x/net v0.8.0 // indirect
 	golang.org/x/sys v0.6.0 // indirect
 	golang.org/x/text v0.8.0 // indirect
 	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4 // indirect
 	google.golang.org/grpc v1.54.1 // indirect
+	google.golang.org/protobuf v1.30.0 // indirect
 	gopkg.in/fsnotify.v1 v1.4.7 // indirect
 	gopkg.in/tomb.v1 v1.0.0-20141024135613-dd632973f1e7 // indirect
 	gopkg.in/yaml.v3 v3.0.1 // indirect

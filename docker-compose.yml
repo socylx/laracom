@@ -36,6 +36,13 @@ services:
       DB_USER: "test"
       DB_PASSWORD: "test"
 
+  laracom-user-cli:
+    build: ./user-cli
+    environment:
+      MICRO_PROXY: "laracom-micro-server:8081"
+      MICRO_AUTH_ID: "admin"
+      MICRO_AUTH_SECRET: "micro"
+
   laracom-user-db:
     image: mysql:5.7
     container_name: laracom-user-db
