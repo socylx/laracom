@@ -3,13 +3,13 @@ module github.com/socylx/laracom/user-service
 go 1.20
 
 require (
-	github.com/golang-jwt/jwt v0.0.0-20210529014511-0f726ea0e725
+	github.com/golang-jwt/jwt v3.2.2+incompatible
 	github.com/golang/protobuf v1.5.3
 	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/micro/v3 v3.18.5
 	github.com/satori/go.uuid v1.2.0
-	golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa
-	golang.org/x/net v0.8.0
+	golang.org/x/crypto v0.9.0
+	golang.org/x/net v0.10.0
 	google.golang.org/protobuf v1.30.0
 )
 
@@ -45,8 +45,8 @@ require (
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
 	go.uber.org/atomic v1.6.0 // indirect
-	golang.org/x/sys v0.6.0 // indirect
-	golang.org/x/text v0.8.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4 // indirect
 	google.golang.org/grpc v1.54.1 // indirect
 	gopkg.in/fsnotify.v1 v1.4.7 // indirect
