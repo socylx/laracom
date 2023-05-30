@@ -12,7 +12,7 @@ func main() {
 	srv := service.New()
 	srv.Init()
 
-	client := pb.NewDemoService("demo-service", srv.Client())
+	client := pb.NewDemoService("demo", srv.Client())
 	rsp, err := client.SayHello(context.TODO(), &pb.DemoRequest{Name: "学院君"})
 	if err != nil {
 		log.Fatalf("服务调用失败：%v", err)

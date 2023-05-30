@@ -44,4 +44,4 @@ COPY --from=builder /app/laracom-demo-service/laracom-demo-service .
 ADD supervisord.conf /etc/supervisord.conf
 
 # 和之前一样通过 Supervisor 管理服务
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
+CMD ["./laracom-demo-service"]
