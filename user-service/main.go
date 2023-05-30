@@ -27,7 +27,7 @@ func main() {
 	db.AutoMigrate(&pb.User{})
 
 	// 初始化 Repo 实例用于后续数据库操作
-	repo := &repository.UserRepository{Db: db}
+	repo := &repository.UserRepository{Db: db.Debug()}
 	// 初始化 token service
 	token := &service.TokenService{Repo: repo}
 
