@@ -43,8 +43,16 @@ func main() {
 
 	srv.Init()
 
+	// 获取 Broker 实例
+	pubSub := srv.Server().Options().Broker
+
 	// 注册处理器
-	_ = pb.RegisterUserServiceHandler(srv.Server(), &handler.UserService{Repo: repo, ResetRepo: resetRepo, Token: token})
+	_ = pb.RegisterUserServiceHandler(srv.Server(), &handler.UserService{
+		Repo:      repo,
+		ResetRepo: resetRepo,
+		Token:     token,
+		PubSub:    pubSub,
+	})
 
 	// 启动用户服务
 	if err := srv.Run(); err != nil {

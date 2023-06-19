@@ -7,7 +7,6 @@ require (
 	github.com/golang/protobuf v1.5.3
 	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/micro/v3 v3.18.5
-	github.com/satori/go.uuid v1.2.0
 	golang.org/x/crypto v0.9.0
 	golang.org/x/net v0.10.0
 	google.golang.org/protobuf v1.30.0

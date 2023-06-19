@@ -1,8 +1,10 @@
 package handler
 
 import (
+	"encoding/json"
 	"errors"
 	"github.com/jinzhu/gorm"
+	"github.com/micro/micro/v3/service/broker"
 	"github.com/socylx/laracom/user-service/model"
 	pb "github.com/socylx/laracom/user-service/proto/user"
 	"github.com/socylx/laracom/user-service/repo"
@@ -13,10 +15,13 @@ import (
 	"strconv"
 )
 
+const topic = "password.reset"
+
 type UserService struct {
 	Repo      repo.Repository
 	ResetRepo repo.PasswordResetInterface
 	Token     service.Authable
+	PubSub    broker.Broker
 }
 
 func (srv *UserService) Get(ctx context.Context, req *pb.User, res *pb.Response) error {
@@ -140,9 +145,14 @@ func (srv *UserService) CreatePasswordReset(ctx context.Context, req *pb.Passwor
 	if err := srv.ResetRepo.Create(passwordReset); err != nil {
 		return err
 	}
+
 	if passwordReset != nil {
 		res.PasswordReset, _ = passwordReset.ToProtobuf()
+		if err := srv.publishEvent(res.PasswordReset); err != nil {
+			return err
+		}
 	}
+
 	return nil
 }
 
@@ -177,5 +187,26 @@ func (srv *UserService) DeletePasswordReset(ctx context.Context, req *pb.Passwor
 		return err
 	}
 	res.PasswordReset = nil
+	return nil
+}
+
+func (srv *UserService) publishEvent(reset *pb.PasswordReset) error {
+	// JSON 编码
+	body, err := json.Marshal(reset)
+	if err != nil {
+		return err
+	}
+	// 构建 broker 消息
+	msg := &broker.Message{
+		Header: map[string]string{
+			"email": reset.Email,
+		},
+		Body: body,
+	}
+	// 通过 broker 发布消息到消息系统
+	if err := srv.PubSub.Publish(topic, msg); err != nil {
+		log.Printf("[pub] failed: %v", err)
+	}
+
 	return nil
 }

@@ -28,6 +28,7 @@ services:
     ports:
       - 9092:9091
     environment:
+      MICRO_BROKER_ADDRESS: "laracom-micro-server:8003"
       MICRO_PROXY: "laracom-micro-server:8081"
       MICRO_AUTH_ID: "admin"
       MICRO_AUTH_SECRET: "micro"
@@ -39,6 +40,7 @@ services:
   laracom-user-cli:
     build: ./user-cli
     environment:
+      MICRO_BROKER_ADDRESS: "laracom-micro-server:8003"
       MICRO_PROXY: "laracom-micro-server:8081"
       MICRO_AUTH_ID: "admin"
       MICRO_AUTH_SECRET: "micro"
@@ -64,9 +66,15 @@ services:
       - 8080:8080
       - 8081:8081
       - 8082:8082
+      - 8003:8003
     restart: always
     command: server
 
+  laracom-nats:
+    image: nats:latest
+    ports:
+      - 4222:4222
+    restart: always
 
 volumes:
   db_data: {}

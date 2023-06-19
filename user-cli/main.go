@@ -3,10 +3,16 @@ package main
 import (
 	"context"
 	"github.com/micro/micro/v3/service"
+	"github.com/micro/micro/v3/service/broker"
 	pb "github.com/socylx/laracom/user-service/proto/user"
 	"log"
 	"time"
 )
+
+func subHandler(m *broker.Message) error {
+	log.Println("subHandler.m: ", m)
+	return nil
+}
 
 func main() {
 	srv := service.New()
@@ -50,5 +56,9 @@ func main() {
 		log.Println(v)
 	}
 
+	b := srv.Server().Options().Broker
+	sub, err := b.Subscribe("password.reset", subHandler)
+
+	log.Println("sub: ", sub, "err: ", err)
 	time.Sleep(time.Second * 5)
 }
