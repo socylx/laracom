@@ -25,9 +25,11 @@ func main() {
 	// 和 Laravel 数据库迁移类似
 	// 每次启动服务时都会检查，如果数据表不存在则创建，已存在检查是否有修改
 	db.AutoMigrate(&pb.User{})
+	db.AutoMigrate(&pb.PasswordReset{})
 
 	// 初始化 Repo 实例用于后续数据库操作
 	repo := &repository.UserRepository{Db: db.Debug()}
+	resetRepo := &repository.PasswordResetRepository{Db: db}
 	// 初始化 token service
 	token := &service.TokenService{Repo: repo}
 
@@ -41,7 +43,7 @@ func main() {
 	srv.Init()
 
 	// 注册处理器
-	_ = pb.RegisterUserServiceHandler(srv.Server(), &handler.UserService{Repo: repo, Token: token})
+	_ = pb.RegisterUserServiceHandler(srv.Server(), &handler.UserService{Repo: repo, ResetRepo: resetRepo, Token: token})
 
 	// 启动用户服务
 	if err := srv.Run(); err != nil {
