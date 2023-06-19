@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/jinzhu/gorm"
-	"github.com/micro/micro/v3/service/broker"
+	"github.com/nats-io/nats.go"
 	"github.com/socylx/laracom/user-service/model"
 	pb "github.com/socylx/laracom/user-service/proto/user"
 	"github.com/socylx/laracom/user-service/repo"
@@ -21,7 +21,7 @@ type UserService struct {
 	Repo      repo.Repository
 	ResetRepo repo.PasswordResetInterface
 	Token     service.Authable
-	PubSub    broker.Broker
+	PubSub    *nats.Conn
 }
 
 func (srv *UserService) Get(ctx context.Context, req *pb.User, res *pb.Response) error {
@@ -196,15 +196,9 @@ func (srv *UserService) publishEvent(reset *pb.PasswordReset) error {
 	if err != nil {
 		return err
 	}
-	// 构建 broker 消息
-	msg := &broker.Message{
-		Header: map[string]string{
-			"email": reset.Email,
-		},
-		Body: body,
-	}
+
 	// 通过 broker 发布消息到消息系统
-	if err := srv.PubSub.Publish(topic, msg); err != nil {
+	if err := srv.PubSub.Publish(topic, body); err != nil {
 		log.Printf("[pub] failed: %v", err)
 	}
 

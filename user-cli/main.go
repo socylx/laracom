@@ -2,17 +2,16 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"github.com/micro/micro/v3/service"
-	"github.com/micro/micro/v3/service/broker"
+	"github.com/nats-io/nats.go"
 	pb "github.com/socylx/laracom/user-service/proto/user"
 	"log"
+	"os"
 	"time"
 )
 
-func subHandler(m *broker.Message) error {
-	log.Println("subHandler.m: ", m)
-	return nil
-}
+const topic = "password.reset"
 
 func main() {
 	srv := service.New()
@@ -21,7 +20,7 @@ func main() {
 	client := pb.NewUserService("user", srv.Client())
 	rsp, err := client.Create(context.TODO(), &pb.User{
 		Name:     "ZhangSan",
-		Email:    "socylx@163.com",
+		Email:    "socylx3@163.com",
 		Password: "123456",
 	})
 	if err != nil {
@@ -56,9 +55,15 @@ func main() {
 		log.Println(v)
 	}
 
-	b := srv.Server().Options().Broker
-	sub, err := b.Subscribe("password.reset", subHandler)
+	nc, err := nats.Connect(os.Getenv("NATS_URL"))
+	if err != nil {
+		log.Fatalf("Could not connect to NATS: %v", err)
+	}
 
-	log.Println("sub: ", sub, "err: ", err)
-	time.Sleep(time.Second * 5)
+	_, err = nc.Subscribe(topic, func(m *nats.Msg) {
+		fmt.Printf("Received a message: %s\n", string(m.Data))
+	})
+
+	log.Println("Subscribe.err: ", err)
+	time.Sleep(time.Second * 10)
 }

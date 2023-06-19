@@ -24,10 +24,12 @@ services:
     depends_on:
       - laracom-micro-server
       - laracom-user-db
+      - laracom-nats
     build: ./user-service
     ports:
       - 9092:9091
     environment:
+      NATS_URL: "nats://laracom-nats:4222"
       MICRO_BROKER_ADDRESS: "laracom-micro-server:8003"
       MICRO_PROXY: "laracom-micro-server:8081"
       MICRO_AUTH_ID: "admin"
@@ -38,8 +40,11 @@ services:
       DB_PASSWORD: "test"
 
   laracom-user-cli:
+    depends_on:
+      - laracom-nats
     build: ./user-cli
     environment:
+      NATS_URL: "nats://laracom-nats:4222"
       MICRO_BROKER_ADDRESS: "laracom-micro-server:8003"
       MICRO_PROXY: "laracom-micro-server:8081"
       MICRO_AUTH_ID: "admin"

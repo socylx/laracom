@@ -4,6 +4,7 @@ go 1.20
 
 require (
 	github.com/micro/micro/v3 v3.18.5
+	github.com/nats-io/nats.go v1.27.0
 	github.com/socylx/laracom/user-service v0.0.0-20230530092439-e2b5f499776d
 )
 
@@ -23,7 +24,11 @@ require (
 	github.com/improbable-eng/grpc-web v0.13.0 // indirect
 	github.com/jinzhu/gorm v1.9.16 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/klauspost/compress v1.16.5 // indirect
 	github.com/miekg/dns v1.1.43 // indirect
+	github.com/nats-io/nats-server/v2 v2.9.18 // indirect
+	github.com/nats-io/nkeys v0.4.4 // indirect
+	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/nightlyone/lockfile v1.0.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
@@ -42,9 +47,10 @@ require (
 	github.com/urfave/cli/v2 v2.3.0 // indirect
 	go.etcd.io/bbolt v1.3.5 // indirect
 	go.uber.org/atomic v1.6.0 // indirect
-	golang.org/x/net v0.8.0 // indirect
-	golang.org/x/sys v0.6.0 // indirect
-	golang.org/x/text v0.8.0 // indirect
+	golang.org/x/crypto v0.9.0 // indirect
+	golang.org/x/net v0.10.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
+	golang.org/x/text v0.9.0 // indirect
 	google.golang.org/genproto v0.0.0-20230306155012-7f2fa6fef1f4 // indirect
 	google.golang.org/grpc v1.54.1 // indirect
 	google.golang.org/protobuf v1.30.0 // indirect

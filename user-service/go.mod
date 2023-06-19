@@ -7,6 +7,7 @@ require (
 	github.com/golang/protobuf v1.5.3
 	github.com/jinzhu/gorm v1.9.16
 	github.com/micro/micro/v3 v3.18.5
+	github.com/nats-io/nats.go v1.27.0
 	golang.org/x/crypto v0.9.0
 	golang.org/x/net v0.10.0
 	google.golang.org/protobuf v1.30.0
@@ -26,7 +27,11 @@ require (
 	github.com/hpcloud/tail v1.0.0 // indirect
 	github.com/improbable-eng/grpc-web v0.13.0 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
+	github.com/klauspost/compress v1.16.5 // indirect
 	github.com/miekg/dns v1.1.43 // indirect
+	github.com/nats-io/nats-server/v2 v2.9.18 // indirect
+	github.com/nats-io/nkeys v0.4.4 // indirect
+	github.com/nats-io/nuid v1.0.1 // indirect
 	github.com/nightlyone/lockfile v1.0.0 // indirect
 	github.com/opentracing/opentracing-go v1.2.0 // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
