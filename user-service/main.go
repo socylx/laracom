@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	micro "github.com/micro/micro/v3/service"
+	"github.com/socylx/laracom/user-service/model"
 	"github.com/socylx/laracom/user-service/service"
 	"log"
 
@@ -24,8 +25,8 @@ func main() {
 
 	// 和 Laravel 数据库迁移类似
 	// 每次启动服务时都会检查，如果数据表不存在则创建，已存在检查是否有修改
-	db.AutoMigrate(&pb.User{})
-	db.AutoMigrate(&pb.PasswordReset{})
+	db.AutoMigrate(&model.User{})
+	db.AutoMigrate(&model.PasswordReset{})
 
 	// 初始化 Repo 实例用于后续数据库操作
 	repo := &repository.UserRepository{Db: db.Debug()}
