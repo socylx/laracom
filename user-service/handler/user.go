@@ -92,29 +92,6 @@ func (srv *UserService) Auth(ctx context.Context, req *pb.User, res *pb.Token) e
 	return nil
 }
 
-/*
-func (srv *UserService) Update(ctx context.Context, req *pb.User, res *pb.Response) error {
-    if req.Password != "" {
-        // 如果密码字段不为空的话对密码进行哈希加密
-        hashedPass, err := bcrypt.GenerateFromPassword([]byte(req.Password), bcrypt.DefaultCost)
-        if err != nil {
-            return err
-        }
-        req.Password = string(hashedPass)
-    }
-    if req.Id == "" {
-        return errors.New("用户 ID 不能为空")
-    }
-    id, _ := strconv.ParseUint(req.Id, 10, 64)
-    user, _ := srv.Repo.Get(uint(id))
-    if err := srv.Repo.Update(user); err != nil {
-        return err
-    }
-    res.User, _ = user.ToProtobuf()
-    return nil
-}
-*/
-
 func (srv *UserService) Update(ctx context.Context, req *pb.User, res *pb.Response) error {
 	if req.Password != "" {
 		// 如果密码字段不为空的话对密码进行哈希加密
