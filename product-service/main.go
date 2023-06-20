@@ -21,6 +21,7 @@ func main() {
 	}
 
 	// 数据库迁移
+	database.Set("gorm:table_options", "charset=utf8")
 	database.AutoMigrate(&model.Product{})
 	database.AutoMigrate(&model.ProductImage{})
 	database.AutoMigrate(&model.Brand{})
