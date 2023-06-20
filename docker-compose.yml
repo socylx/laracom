@@ -26,8 +26,6 @@ services:
       - laracom-user-db
       - laracom-nats
     build: ./user-service
-    ports:
-      - 9092:9091
     environment:
       NATS_URL: "nats://laracom-nats:4222"
       MICRO_BROKER_ADDRESS: "laracom-micro-server:8003"
@@ -86,8 +84,6 @@ services:
       - laracom-micro-server
       - laracom-product-db
     build: ./product-service
-    ports:
-      - 9093:9091
     environment:
       MICRO_PROXY: "laracom-micro-server:8081"
       MICRO_AUTH_ID: "admin"
